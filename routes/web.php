@@ -13,6 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('redierct', function () {
+    return redirect()->route('otraruta')->with('variable','algo');
 });
+
+Route::get('otro', function () {
+    dump(session()->all());
+    echo "otro";
+})->name("otraruta");
+
+Route::get('/', function () {
+    return view("welcome");
+});
+
+
