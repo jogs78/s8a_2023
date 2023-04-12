@@ -18,9 +18,16 @@
 </style>
 </head>
 <body>
+    @guest
     <header class="encabezado">
-        sistema usuado por {{Auth::user()->nombre}}
+        sistema sin usuario
     </header>
+        
+    @else
+        <header class="encabezado">
+            sistema usuado por {{Auth::user()->nombre}}
+        </header>
+    @endguest
 @yield('contenido')
 </body>
 </html>
