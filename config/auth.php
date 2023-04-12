@@ -40,6 +40,14 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'webd' => [
+            'driver' => 'session',
+            'provider' => 'docentes',
+        ],
+        'webe' => [
+            'driver' => 'session',
+            'provider' => 'estudiantes',
+        ],
     ],
 
     /*
@@ -64,11 +72,14 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Usuario::class,
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'docentes' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Docente::class,
+        ],
+        'estudiantes' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Estudiante::class,
+        ],
     ],
 
     /*
