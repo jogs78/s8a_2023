@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('docentes', function (Blueprint $table) {
             $table->id();
             $table->string("nombre");
-            $table->float("altura");
+            $table->float("altura")->nullable()->default(null);
             $table->timestamps();
         });
     }

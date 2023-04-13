@@ -40,7 +40,8 @@ class EstudianteController extends Controller
     public function store(StoreEstudianteRequest $request)
     {
         $nuevo = new Estudiante();
-        $nuevo->nombre = $request->input('nombre');
+        $nuevo->fill($request->all());
+ //       $nuevo->nombre = $request->input('nombre');
         $nuevo->save();
         return redirect(route('estudiantes.index'));
     }

@@ -2,7 +2,7 @@
 @section('contenido')
 
 
-<form action="{{route('estudiantes.store')}}" method="post">
+<form action="{{route('docentes.store')}}" method="post">
     @csrf
     <label for='nombre'>Nombre</label>
     <input type='text' name='nombre' id='nombre'>

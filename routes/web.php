@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SistemaController;
 use App\Http\Controllers\IdiomaControler;
 use App\Http\Controllers\PaqueteController;
+use App\Http\Controllers\EstudianteController;
+use App\Http\Controllers\DocenteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,4 +54,5 @@ Route::delete('borrar/{cual?}',[PaqueteController::class, 'destroy'])->name('paq
 //comentarios xxxxxxxxx
 Route::resource('servicios', PaqueteController::class);
 Route::resource('estudiantes',EstudianteController::class);
+Route::resource('docentes',DocenteController::class);
 

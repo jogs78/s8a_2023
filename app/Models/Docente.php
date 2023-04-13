@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Docente extends Authenticatable
 {
     use HasFactory;
+    protected $fillable=['nombre','nombre_de_usuario','clave'];
 
     public function materiaHasOneThrough(){
         return $this->hasOneThrough(
