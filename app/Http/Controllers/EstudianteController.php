@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreEstudianteRequest;
 use App\Http\Requests\UpdateEstudianteRequest;
 use App\Models\Estudiante;
@@ -39,9 +42,16 @@ class EstudianteController extends Controller
      */
     public function store(StoreEstudianteRequest $request)
     {
+        $archivo = $request->file('imagen');
+        $nombreArchivo = $archivo->getClientOriginalName();
+
+        $r = Storage::disk('privado')->putFileAs('',$archivo,$nombreArchivo);
+        
         $nuevo = new Estudiante();
         $nuevo->fill($request->all());
- //       $nuevo->nombre = $request->input('nombre');
+        $nuevo->imagen=$r;
+        $nuevo->clave= Hash::make($request->input('clave'));
+        //$nuevo->nombre = $request->input('nombre');
         $nuevo->save();
         return redirect(route('estudiantes.index'));
     }
@@ -54,7 +64,12 @@ class EstudianteController extends Controller
      */
     public function show(Estudiante $estudiante)
     {
-        //
+        $url = storage_path('app/fotos') .  '/' . $estudiante->imagen;// depende de root en el archivo filesystems.php.
+        if (Storage::disk('privado')->exists($estudiante->imagen) && Auth::id()==$estudiante->id)
+            return response()->download($url);
+        else
+            abort(404);
+        
     }
 
     /**

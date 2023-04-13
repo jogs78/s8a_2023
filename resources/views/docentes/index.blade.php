@@ -6,6 +6,7 @@
         <thead>
             <th>#</th>
             <th>Nombre</th>
+            <th>Foto</th>
             <th>Acciones</th>
         </thead>
         <tbody>
@@ -13,6 +14,7 @@
             <tr>
                 <td>{{$uno->id}}</td>
                 <td>{{$uno->nombre}}</td>
+                <td><img src="{{asset("imagenes/$uno->imagen")}}" alt=""></td>
                 <td>
                     <a href="{{route('docentes.edit',$uno->id)}}">ACTUALIZAR</a>
                     <form action="{{route('docentes.destroy', $uno->id)}}" method="post">

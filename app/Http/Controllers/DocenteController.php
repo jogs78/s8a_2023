@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Docente;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
+
 use Illuminate\Http\Request;
 
 class DocenteController extends Controller
@@ -39,8 +42,17 @@ class DocenteController extends Controller
      */
     public function store(Request $request)
     {
+        $archivo = $request->file('imagen');
+        $nombreArchivo = $archivo->getClientOriginalName();
+
+        $r = Storage::disk('publico')->putFileAs('',$archivo,$nombreArchivo);
+        //$r = Storage::disk('publico')->exists("maria.jpg");
+        //$r = Storage::disk('publico')->delete("maria.jpg");
+        
         $nuevo = new Docente();
         $nuevo->fill($request->all());
+        $nuevo->imagen=$r;
+        $nuevo->clave= Hash::make($request->input('clave'));
         //$nuevo->nombre = $request->input('nombre');
         $nuevo->save();
         return redirect(route('docentes.index'));

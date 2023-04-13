@@ -6,6 +6,7 @@
             <thead>
                 <th>#</th>
                 <th>Nombre</th>
+                <th>Foto</th>
                 <th>Acciones</th>
             </thead>
             <tbody>
@@ -13,6 +14,7 @@
                 <tr>
                     <td>{{$uno->id}}</td>
                     <td>{{$uno->nombre}}</td>
+                    <td><img src="{{route('estudiantes.show',$uno->id)}}" alt=""></td>
                     <td>
                         @can('update', $uno)
                             <a href="{{route('estudiantes.edit',$uno->id)}}">ACTUALIZAR</a>                        
