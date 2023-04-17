@@ -2,11 +2,17 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Auth;
 // use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
 {
+    public function __construct()
+    {
+        session_start();
+    }
+
     /**
      * The model to policy mappings for the application.
      *
@@ -23,6 +29,10 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        if(isset($_SESSION['AuthGuard'])){
+            Auth::setDefaultDriver( $_SESSION['AuthGuard']);
+        }
+
         $this->registerPolicies();
 
         //

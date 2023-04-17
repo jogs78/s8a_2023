@@ -18,26 +18,40 @@ class SistemaController extends Controller
     }
     public function validar(Request $solicitud){
 
-       // dump($solicitud->all());
-
-        $usuario = $solicitud->input('usuario');
-        $password = $solicitud->input('password');
-        $encontrado = Usuario::where('nombre_de_usuario',$usuario)->first();
-        if( is_null($encontrado) ){    
-            return view("Sistema.error");
-        }else{
-            $password_bd = $encontrado->clave;
-            $conincide = Hash::check($password,$password_bd);
-            
-            if($conincide){
-                Auth::login( $encontrado );
-                return redirect('ropciones');
-            }else{
-                return view("Sistema.error");
-            }
-        }
-    }
-    public function mopciones(){
+        // dump($solicitud->all());
+ 
+         $usuario = $solicitud->input('usuario');
+         $password = $solicitud->input('password');
+         $encontrado = Docente::where('nombre_de_usuario',$usuario)->first();
+         if( is_null($encontrado) ){
+             $encontrado = Estudiante::where('nombre_de_usuario',$usuario)->first();
+             if( is_null($encontrado) ){
+                 return view("Sistema.error");
+             }else{
+                 $password_bd = $encontrado->clave;
+                 $conincide = Hash::check($password,$password_bd);
+                 if($conincide){
+                     Auth::guard('webe')->login( $encontrado );
+                     $_SESSION['AuthGuard']= 'webe';
+                     return redirect('ropciones');
+                 }else{
+                     return view("Sistema.error");
+                 }
+             }
+             return view("Sistema.error");
+         }else{
+             $password_bd = $encontrado->clave;
+             $conincide = Hash::check($password,$password_bd);            
+             if($conincide){
+                 Auth::guard('webd')->login($encontrado);
+                 $_SESSION['AuthGuard']= 'webd';
+                 return redirect('ropciones');
+             }else{
+                 return view("Sistema.error");
+             }
+         }
+     }
+     public function mopciones(){
         return view("Sistema.opciones");
     }
         
