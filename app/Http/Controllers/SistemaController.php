@@ -31,8 +31,8 @@ class SistemaController extends Controller
                  $password_bd = $encontrado->clave;
                  $conincide = Hash::check($password,$password_bd);
                  if($conincide){
-                     Auth::guard('webe')->login( $encontrado );
-                     $_SESSION['AuthGuard']= 'webe';
+                     Auth::guard('guard_estudiantes')->login( $encontrado );
+                     $_SESSION['AuthGuard']= 'guard_estudiantes';
                      return redirect('ropciones');
                  }else{
                      return view("Sistema.error");
@@ -43,8 +43,8 @@ class SistemaController extends Controller
              $password_bd = $encontrado->clave;
              $conincide = Hash::check($password,$password_bd);            
              if($conincide){
-                 Auth::guard('webd')->login($encontrado);
-                 $_SESSION['AuthGuard']= 'webd';
+                 Auth::guard('guard_docentes')->login($encontrado);
+                 $_SESSION['AuthGuard']= 'guard_docentes';
                  return redirect('ropciones');
              }else{
                  return view("Sistema.error");

@@ -64,6 +64,7 @@ class EstudianteController extends Controller
      */
     public function edit(Estudiante $estudiante)
     {
+        $this->authorize('update');
         return view('estudiantes.edit', compact('estudiante'));
     }
 

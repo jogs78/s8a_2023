@@ -40,13 +40,13 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-        'webd' => [
+        'guard_docentes' => [
             'driver' => 'session',
-            'provider' => 'docentes',
+            'provider' => 'providers_docentes',
         ],
-        'webe' => [
+        'guard_estudiantes' => [
             'driver' => 'session',
-            'provider' => 'estudiantes',
+            'provider' => 'providers_estudiantes',
         ],
     ],
 
@@ -72,11 +72,11 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Usuario::class,
         ],
-        'docentes' => [
+        'providers_docentes' => [
             'driver' => 'eloquent',
             'model' => App\Models\Docente::class,
         ],
-        'estudiantes' => [
+        'providers_estudiantes' => [
             'driver' => 'eloquent',
             'model' => App\Models\Estudiante::class,
         ],
