@@ -10,5 +10,6 @@
         <li><a href="{{ route('salida') }}">Salir..</a></li>
         <li><a href="{{ route('paquetes.index')}}">PAQUETES</a></li>
         <li><a href="{{ route('estudiantes.index')}}">ESTUDIANTES</a></li>
+        <li><a href="{{ route('personas.index')}}">USUARIOS</a></li>
     </ul>
 @endsection

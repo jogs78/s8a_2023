@@ -1,6 +1,6 @@
 @extends('plantillas.principal')
 @section('contenido')
-    Listar  estudiantes<br>
+    Listar  usuarios<br>
     
     <table border="1">
         <thead>
@@ -14,7 +14,11 @@
                 <td>{{$uno->id}}</td>
                 <td>{{$uno->nombre}}</td>
                 <td>
-                    <a href="{{route('estudiantes.edit',$uno->id)}}">ACTUALIZAR</a>
+                    @can('update', $uno)
+                        <a href="{{route('personas.edit',$uno->id)}}">ACTUALIZAR</a>                    
+                    @endcan                    
+                    
+                    
                     <form action="{{route('estudiantes.destroy', $uno->id)}}" method="post">
                         @method('DELETE')
                         @csrf
@@ -29,9 +33,7 @@
 
     </table>
 
-    @can('create', App\Models\Estudiante::class)
         <a href="{{route('estudiantes.create')}}">AGREGAR UN NUEVO ESTUDIANTES</a>    
-    @endcan
 
 
 @endsection

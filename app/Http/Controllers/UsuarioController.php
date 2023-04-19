@@ -14,7 +14,8 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        //
+        $todos = Usuario::all();
+        return view('usuarios.index',compact('todos'));
     }
 
     /**
@@ -55,8 +56,10 @@ class UsuarioController extends Controller
      * @param  \App\Models\Usuario  $usuario
      * @return \Illuminate\Http\Response
      */
-    public function edit(Usuario $usuario)
+    public function edit( $usuario)
     {
+        $encontrado = Usuario::find($usuario);
+        dump($encontrado);
         //
     }
 

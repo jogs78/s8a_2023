@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('nombre_de_usuario');
-            $table->enum('rol',['Docente','Estudiante'])->default('Estudiante');
+            $table->enum('rol',['Docente','Estudiante','Admin'])->default('Estudiante');
             $table->string('clave');
             $table->timestamps();
         });
