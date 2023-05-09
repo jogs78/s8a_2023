@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Docente;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
-
+use App\Http\Requests\StoreDocenteRequest;
 use Illuminate\Http\Request;
 
 class DocenteController extends Controller
@@ -19,7 +19,12 @@ class DocenteController extends Controller
     {
         $todos = Docente::all();
         //        dump($todos);
-        return view("docentes.index",compact('todos'));
+        
+        if(request()->expectsJson()){
+            return response()->json($todos);
+
+        }else
+            return view("docentes.index",compact('todos'));
                //
     }
 
@@ -40,7 +45,7 @@ class DocenteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreDocenteRequest $request)
     {
         $archivo = $request->file('imagen');
         $nombreArchivo = $archivo->getClientOriginalName();
@@ -55,7 +60,11 @@ class DocenteController extends Controller
         $nuevo->clave= Hash::make($request->input('clave'));
         //$nuevo->nombre = $request->input('nombre');
         $nuevo->save();
-        return redirect(route('docentes.index'));
+
+        if(request()->expectsJson()){
+            return response()->json($nuevo);
+        }else
+            return redirect(route('docentes.index'));
     }
 
     /**
@@ -92,7 +101,11 @@ class DocenteController extends Controller
 
         $docente->nombre = $request->input('nombre');
         $docente->save();
-        return redirect(route('docentes.index'));
+
+        if(request()->expectsJson()){
+            return response()->json($docente);
+        }else
+            return redirect(route('docentes.index'));
     }
 
     /**
@@ -104,6 +117,10 @@ class DocenteController extends Controller
     public function destroy(Docente $docente)
     {
         $docente->delete();
-        return redirect(route('docentes.index'));
+        if(request()->expectsJson()){
+            return response()->json($docente);
+        }else
+            return redirect(route('docentes.index'));
+
     }
 }
