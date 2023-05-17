@@ -19,7 +19,8 @@ class DocenteController extends Controller
     {
         $todos = Docente::all();
         //        dump($todos);
-        
+//        $this->authorize('viewAny', Docente::class);
+
         if(request()->expectsJson()){
             return response()->json($todos);
 
