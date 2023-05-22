@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('docentes', function (Blueprint $table) {
+        Schema::create('experiencias', function (Blueprint $table) {
             $table->id();
-            $table->string("nombre");
-            $table->float("altura")->nullable()->default(null);
+            $table->foreignId('docente_id')->constrained();
+//            $table->foreignId('docente_id')->references('id')->on('docentes');
+            $table->string('descripcion');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('docentes');
+        Schema::dropIfExists('experiencias');
     }
 };

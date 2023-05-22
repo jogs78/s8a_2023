@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Docente extends Authenticatable
 {
     use HasFactory;
+    protected $fillable=['nombre','nombre_de_usuario','clave'];
 
     public function materiaHasOneThrough(){
         return $this->hasOneThrough(
@@ -33,10 +34,11 @@ class Docente extends Authenticatable
     }
     public function materias(){
         return $this->hasMany("App\Models\Materia");
-
     }
 
-
+    public function experiencias(){
+        return $this->hasMany("App\Models\Experiencia");
+    }
 
     public function materiasHasManyThrough(){
         

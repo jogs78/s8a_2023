@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->call(EstudianteSeeder::class);
         $this->call(DocenteSeeder::class);
 
+
         $materia = new Materia();
         $materia->nombre="Redes";
         $materia->docente_id = 1;
@@ -33,6 +34,7 @@ class DatabaseSeeder extends Seeder
         $materia->docente_id = 1;
         $materia->save();
 
+/*
         $materia = new Materia();
         $materia->nombre="Programacion";
         $materia->docente_id = 2;
@@ -54,6 +56,7 @@ class DatabaseSeeder extends Seeder
         $materia->nombre="Administracion de Base de datos";
         $materia->docente_id = 3;
         $materia->save();
+*/
 
         $asignacion = new Asignacion();
         $asignacion->docente_id = 1;
@@ -63,6 +66,8 @@ class DatabaseSeeder extends Seeder
         $asignacion->docente_id = 1;
         $asignacion->materia_id = 2;
         $asignacion->save();
+
+/*
         $asignacion = new Asignacion();
         $asignacion->docente_id = 2;
         $asignacion->materia_id = 3;
@@ -84,7 +89,7 @@ class DatabaseSeeder extends Seeder
         $asignacion->materia_id = 7;
         $asignacion->save();
 
-/*        DB::table('docente_materia')->insert(['docente_id'=>1,'materia_id'=>1]);
+        DB::table('docente_materia')->insert(['docente_id'=>1,'materia_id'=>1]);
         DB::table('docente_materia')->insert(['docente_id'=>1,'materia_id'=>2]);
         DB::table('docente_materia')->insert(['docente_id'=>2,'materia_id'=>3]);
         DB::table('docente_materia')->insert(['docente_id'=>2,'materia_id'=>4]);
