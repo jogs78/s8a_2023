@@ -34,10 +34,11 @@ class Docente extends Authenticatable
     }
     public function materias(){
         return $this->hasMany("App\Models\Materia");
-
     }
 
-
+    public function experiencias(){
+        return $this->hasMany("App\Models\Experiencia");
+    }
 
     public function materiasHasManyThrough(){
         

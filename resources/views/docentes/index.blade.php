@@ -16,6 +16,9 @@
                 <td>{{$uno->nombre}}</td>
                 <td><img src="{{asset("imagenes/$uno->imagen")}}" alt=""></td>
                 <td>
+                    <a href="{{route('docentes.experiencias.index',$uno->id)}}">EXPERIENCIA</a>
+                    
+
                     <a href="{{route('docentes.edit',$uno->id)}}">ACTUALIZAR</a>
                     <form action="{{route('docentes.destroy', $uno->id)}}" method="post">
                         @method('DELETE')
